@@ -8,7 +8,7 @@ public class Libro {
     private String codigo;
     private String nombre;
     private String pasta;
-    private String editoria;
+    private String editorial;
     private String años;
   
     
@@ -16,7 +16,7 @@ public class Libro {
         this.codigo=codigo;
         this.nombre=nombre;
         this.pasta=pasta;
-        this.editoria=editoria;
+        this.editorial=editoria;
         this.años=años;
     }
 
@@ -50,11 +50,11 @@ public class Libro {
     }
 
     public String getEditoria() {
-        return editoria;
+        return editorial;
     }
 
     public void setEditoria(String editorial) {
-        this.editoria = editorial;
+        this.editorial = editorial;
     }
 
     public String getAños() {

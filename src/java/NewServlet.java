@@ -40,7 +40,7 @@ public class NewServlet extends HttpServlet {
                 request.getParameter("codigo"),
                 request.getParameter("nombre"),
                 request.getParameter("pasta"),
-                request.getParameter("editoria"),
+                request.getParameter("editorial"),
                 request.getParameter("años")
             );               
             

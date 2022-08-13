@@ -9,21 +9,21 @@ package Clases;
  * @author DELL
  */
 public class LibroController {
-      Libro[] tablaALumno;
+      Libro[] tablaAlumno;
     int indiceArray;
     
     public LibroController(){
-        this.tablaALumno = new Libro[100];
+        this.tablaAlumno = new Libro[100];
         this.indiceArray=0;
     }
     
      public void guardarAlumno(Libro alumno){
-        this.tablaALumno[this.indiceArray]=alumno;  
+        this.tablaAlumno[this.indiceArray]=alumno;  
         this.indiceArray=this.indiceArray+1;
     }
     
     public Libro[] getAlumnos(){
-        return this.tablaALumno;
+        return this.tablaAlumno;
     }
     
 }
