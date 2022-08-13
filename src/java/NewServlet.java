@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+import Clases.Libro;
+import Clases.LibroController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +19,9 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/NewServlet"})
 public class NewServlet extends HttpServlet {
+    Libro libro;
+    LibroController registrolibro;
+    Libro[] libroRegistrados;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,19 +36,20 @@ public class NewServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter respuesta = response.getWriter()) {
-            alumno=new Alumno(
+            libro=new Libro (
                 request.getParameter("codigo"),
                 request.getParameter("nombre"),
-                request.getParameter("correo"),
-                request.getParameter("direccion")
+                request.getParameter("pasta"),
+                request.getParameter("editoria"),
+                request.getParameter("años")
             );               
             
-            if(registroAlumno==null){
-                 registroAlumno=new AlumnoController();
+            if(registrolibro==null){
+                 registrolibro=new LibroController();
             }
            
-            registroAlumno.guardarAlumno(alumno);//almacenarlo en el array
-             alumnosRegistrados= registroAlumno.getAlumnos();
+            registrolibro.guardarAlumno(libro);//almacenarlo en el array
+             libroRegistrados= registrolibro.getAlumnos();
             
             respuesta.println("<!DOCTYPE html>");
             respuesta.println("<html>");
@@ -54,20 +60,21 @@ public class NewServlet extends HttpServlet {
             respuesta.println("</head>");
             respuesta.println("<body>");           
             respuesta.println("<div class='container'>");
-             respuesta.println("<br><h1>Gracias por registrarse </h1><br>");  
+             respuesta.println("<br><h1>Libro Registrado </h1><br>");  
             respuesta.println("<form name='nombreForm'>");
             respuesta.println("<div class='container-lg d-flex'> <a href='index.html' class=\"btn btn-success ml-auto\">Registrar Nuevo</a></div><br>");
             respuesta.println("<table class=\"table table-hover table-striped\">");   
-            respuesta.println("<thead><tr> <th scope=\"col\">CODIGO CLIENTE</th> <th scope=\"col\">NOMBRE DEL CLIENTE</th>\n" +
-                                "<th scope=\"col\">CORREO DEL CLIENTE</th> <th scope=\"col\">DIRECCION</th>\n" +
-                                "<th scope=\"col\">ACCION</th> </tr></thead>");  
+            respuesta.println("<thead><tr> <th scope=\"col\">CODIGO LIBRO</th> <th scope=\"col\">NOMBRE DEL LIBRO</th>\n" +
+                                "<th scope=\"col\">TIPO DE PASTA</th> <th scope=\"col\">EDITORIAL</th>\n" +
+                                "<th scope=\"col\">AÑO DE </th> </tr></thead>" + "<th scope=\"col\">ACCION</th> </tr></thead>");  
             respuesta.println("<tbody>");
-            for (int i = 0; i < alumnosRegistrados.length; i++){
-                    if(!alumnosRegistrados[i].getCodigo().isEmpty()){
-                       respuesta.println("<tr><td>" + alumnosRegistrados[i].getCodigo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getNombre() + "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getCorreo()+ "</td>");
-                       respuesta.println("<td>" + alumnosRegistrados[i].getDireccion()+ "</td>");
+            for (int i = 0; i < libroRegistrados.length; i++){
+                    if(!libroRegistrados[i].getCodigo().isEmpty()){
+                       respuesta.println("<tr><td>" + libroRegistrados[i].getCodigo()+ "</td>");
+                       respuesta.println("<td>" + libroRegistrados[i].getNombre() + "</td>");
+                       respuesta.println("<td>" + libroRegistrados[i].getPasta()+ "</td>");
+                       respuesta.println("<td>" + libroRegistrados[i].getEditoria()+ "</td>");
+                       respuesta.println("<td>" + libroRegistrados[i].getAños()+ "</td>");
                        respuesta.println("<td>"
                                + "<button type=\"button\" class=\"btn btn-warning\"></i>Editar</button> "
                                + "<button type=\"button\" class=\"btn btn-danger\">Eliminar</button>"
